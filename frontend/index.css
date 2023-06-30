@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    body{
+      @apply text-gray-800 font-[400] text-base;
+    }
+  
+    h2{
+      @apply text-3xl font-[500] text-gray-800;
+    }
+  
+    
+  }
+  
+  @layer components {
+    .nav-element {
+      @apply text-lg font-[500] leading-normal py-[0.1rem] px-[1.2rem] rounded-[0.4rem] text-center justify-center items-center;
+    }
+    .submit-button{
+      @apply text-2xl p-4 rounded-xl shadow-md bg-primary-dark
+    }
+  }
+  
+  :root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 60, 223, 255;
+    --background-end-rgb: 255, 255, 255;
+    --default-font: 'Leaguespartan';
+    --display-font: 'Roboto';
+    --mono-font: 'mono-font';
+    --wrap-width: 145rem;
+    --big-padding: 15rem;
+    --tripple-padding: 10rem;
+    --double-padding: 6rem;
+    --medium-padding: 4rem;
+    --base-padding: 2.4rem;
+    --half-padding: 1.2rem;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --foreground-rgb: 255, 255, 255;
+      --background-start-rgb: 0, 0, 0;
+      --background-end-rgb: 0, 0, 0;
+    }
+  }
+  
+  .header-wrap {
+    position: relative;
+    height: 6rem;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: var(--wrap-width);
+    margin: 0 auto;
+    padding: 0 var(--double-padding);
+    display: flex;
+    z-index: 100;
+  }
+  
+  .nav-wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 4rem;
+  }
+  
+  .nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    line-height: 1em;
+    height: 3.6rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding: .1rem 1.2rem 0;
+    background-color: transparent;
+    margin: 0 .2rem;
+    border-radius: .4rem;
+    overflow: hidden;
+    color: currentColor;
+    cursor: pointer;
+  }
+  
+  .title {
+    font-family: var(--display-font);
+    font-size: 5.6rem;
+    line-height: 1em;
+    letter-spacing: -.01em;
+    font-weight: 500;
+    margin: -.025em auto 2.4rem;
+  }
+  
+  .title.big {
+    font-family: var(--display-font);
+    font-size: 14.5rem;
+    line-height: .9em;
+    letter-spacing: -.025em;
+    font-weight: 400;
+    margin: -.025em auto 2.4rem;
+  }
+  
+  .title.small{
+    font-size: 3.6rem;
+  }
+  
+  
+  h5 {
+    display: block;
+    font-size: 0.83em;
+    margin-block-start: 1.67em;
+    margin-block-end: 1.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+  }
