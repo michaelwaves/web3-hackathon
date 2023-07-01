@@ -5,19 +5,42 @@ export default function PatentDisplay({ title, number, filingDate, issueDate, ab
         )
     })
     return (
-        <div>
-            <div className="flex flex-col space-y-2">
-                <h2>{title}</h2>
-                <h3>{number}</h3>
+        <div className="w-60 h-auto border-gray-800 rounded-xl py-4 border-[1px] shadow-md">
+            <div className="flex flex-col space-y-2 items-center justify-center">
+                <h2 className="text-2xl">{title}</h2>
+                <h3 className="font-bold">Patent No. {number}</h3>
                 <img src={image} alt="" />
-                {inventorComponents}
-                <h3>{filingDate}</h3>
-                <h3>{issueDate}</h3>
-                <div className="bg-[#cccccc] p-2 rounded-lg">
+                <div className="flex flex-row w-full px-2">
+                    <div className="w-full border-r-[2px] border-gray-300 mr-2">
+                        <p className="font-bold">Inventors:</p>
+                    </div>
+                    <div className="flex flex-col w-full">
+                        {inventorComponents}
+                    </div>
+                </div>
+                <div className="flex flex-row w-full px-2">
+                    <div className="w-full border-r-[2px] border-gray-300 mr-2">
+                        <h3 className="font-bold">Filing Date: </h3>
+                    </div>
+                    <div className="w-full">
+                        {filingDate}
+                    </div>
+                </div>
+                <div className="flex flex-row w-full px-2">
+                    <div className="w-full border-r-[2px] border-gray-300 mr-2">
+                        <h3 className="font-bold">Issue Date: </h3>
+
+                    </div>
+                    <div className="w-full">
+                        {issueDate}
+                    </div>
+                </div>
+                <div className="bg-[#cccccc] p-2 rounded-t-lg w-full">
+                    <p className="font-bold">Abstract</p>
                     <h3>{abstract}</h3>
                 </div>
             </div>
-            <button onClick={onClick}>Buy</button>
-        </div>
+            <button className="w-full rounded-t-none" onClick={onClick}>Buy</button>
+        </div >
     )
 }

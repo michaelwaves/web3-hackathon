@@ -2,7 +2,7 @@ import PatentDisplay from "../components/PatentDisplay"
 
 export default function Buy() {
     return (
-        <div>
+        <div className="min-h-screen h-auto">
             <h1>Choose Patent to Buy</h1>
             <div className="flex flex-col space-y-2">
                 <PatentDisplay title="Patent 1" number="123456"
