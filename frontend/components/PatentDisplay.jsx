@@ -1,6 +1,11 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import Modal from './Modal'
 import { useState } from 'react'
+
+const expand = <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+</svg>
+
 export default function PatentDisplay({ title, number, filingDate, issueDate, abstract, inventors, image, onClick, buttonText }) {
     const [showModal, setShowModal] = useState(false)
 
@@ -15,6 +20,12 @@ export default function PatentDisplay({ title, number, filingDate, issueDate, ab
                 <h2 className="text-2xl">{title}</h2>
                 <h3 className="font-bold">Patent No. {number}</h3>
                 <img src={image} alt="" />
+                <button className="bg-[#cccccc] p-2 rounded-t-lg w-full text-black"
+                    onClick={() => { setShowModal(true) }}
+
+                >
+                    <p className="font-bold">Show Abstract</p>
+                </button>
                 <div className="flex flex-row w-full px-2">
                     <div className="w-full border-r-[2px] border-gray-300 mr-2">
                         <p className="font-bold">Inventors:</p>
@@ -40,12 +51,6 @@ export default function PatentDisplay({ title, number, filingDate, issueDate, ab
                         {issueDate}
                     </div>
                 </div>
-                <button className="bg-[#cccccc] p-2 rounded-t-lg w-full text-black"
-                    onClick={() => { setShowModal(true) }}
-
-                >
-                    <p className="font-bold">Abstract</p>
-                </button>
             </div>
             <motion.button className="w-full rounded-t-none" onClick={onClick}
                 whileHover={{ scale: 1.1 }}
