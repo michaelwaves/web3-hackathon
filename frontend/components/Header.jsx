@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useState } from "react"
 import SolutionsMenu from "./SolutionsMenu"
-export default function Header({ wallet, isSignedIn}) {
+export default function Header({ wallet, isSignedIn }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [isSolutionsOpen, setIsSolutionsOpen] = useState(false)
     const toggleSolutionMenu = () => {
@@ -61,7 +61,7 @@ export default function Header({ wallet, isSignedIn}) {
                     initial={false}
                     animate={isMenuOpen ? "open" : "closed"}
                     variants={expansionVariants}
-                    className="flex flex-col space-y-2 w-full h-full items-center justify-center sm:hidden fixed top-0 left-0 bg-primary-light">
+                    className="flex flex-col bg-white space-y-2 w-full h-full items-center justify-center sm:hidden fixed top-0 left-0 bg-primary-light">
 
                     <Link href="/about" className="nav-element text-3xl">About</Link>
                     <button className="nav-element text-3xl" onClick={toggleSolutionMenu}>Start Now</button>
@@ -70,13 +70,13 @@ export default function Header({ wallet, isSignedIn}) {
 
                 <div className='sm:block hidden'>
                     {!isSignedIn ?
-                    <button onClick={()=>wallet.signIn()}>
-                        sign in
-                    </button>:
-                    <button onClick={()=>wallet.signOut()}>
-                        sign out
+                        <button onClick={() => wallet.signIn()}>
+                            sign in
+                        </button> :
+                        <button onClick={() => wallet.signOut()}>
+                            sign out
                         </button>
-                        }
+                    }
                 </div>
             </div>
             <SolutionsMenu isSolutionsOpen={isSolutionsOpen} />

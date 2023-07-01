@@ -32,7 +32,7 @@ const solutionsData = [
     {
         title: "Trade",
         text: "Securely buy and sell patents",
-        href: "/marketplace"
+        href: "/trade"
     }
 
 ]

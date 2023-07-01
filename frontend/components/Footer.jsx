@@ -10,7 +10,7 @@ export default function Footer() {
                 <div className="flex flex-col space-y-2">
                     <h2>Solutions</h2>
                     <a href="/upload"><h3>Store</h3></a>
-                    <a href="/marketplace"><h3>Trade</h3></a>
+                    <a href="/trade"><h3>Trade</h3></a>
                 </div>
                 <div className="flex flex-col space-y-2">
                     <h2>Company</h2>
