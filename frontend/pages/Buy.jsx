@@ -9,7 +9,9 @@ export default function Buy() {
                     filingDate="1/1/2021" issueDate="1/1/2022" abstract="This is a patent"
                     inventors={["John Doe", "Jane Doe"]}
                     image="https://www.w3schools.com/howto/img_forest.jpg"
-                    onClick={() => { console.log("u bought a patent!") }} />
+                    onClick={() => { console.log("u bought a patent!") }}
+                    buttonText="Buy" />
+
             </div>
         </div>
     )

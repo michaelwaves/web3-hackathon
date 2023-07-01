@@ -1,4 +1,9 @@
-export default function PatentDisplay({ title, number, filingDate, issueDate, abstract, inventors, image, onClick }) {
+import { AnimatePresence, motion } from 'framer-motion'
+import Modal from './Modal'
+import { useState } from 'react'
+export default function PatentDisplay({ title, number, filingDate, issueDate, abstract, inventors, image, onClick, buttonText }) {
+    const [showModal, setShowModal] = useState(false)
+
     const inventorComponents = inventors.map((inventor, index) => {
         return (
             <h3 key={index}>{inventor}</h3>
@@ -35,12 +40,20 @@ export default function PatentDisplay({ title, number, filingDate, issueDate, ab
                         {issueDate}
                     </div>
                 </div>
-                <div className="bg-[#cccccc] p-2 rounded-t-lg w-full">
+                <button className="bg-[#cccccc] p-2 rounded-t-lg w-full text-black"
+                    onClick={() => { setShowModal(true) }}
+
+                >
                     <p className="font-bold">Abstract</p>
-                    <h3>{abstract}</h3>
-                </div>
+                </button>
             </div>
-            <button className="w-full rounded-t-none" onClick={onClick}>Buy</button>
+            <motion.button className="w-full rounded-t-none" onClick={onClick}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+            >{buttonText}</motion.button>
+            <AnimatePresence>
+                {showModal && <Modal handleClose={() => setShowModal(false)} text={abstract} />}
+            </AnimatePresence>
         </div >
     )
 }

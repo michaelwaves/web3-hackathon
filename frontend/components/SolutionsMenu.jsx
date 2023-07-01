@@ -33,6 +33,11 @@ const solutionsData = [
         title: "Trade",
         text: "Securely buy and sell patents",
         href: "/trade"
+    },
+    {
+        title: "Manage",
+        text: "Manage your patent portfolio",
+        href: "/portfolio"
     }
 
 ]

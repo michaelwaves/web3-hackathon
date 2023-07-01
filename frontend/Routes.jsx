@@ -7,6 +7,7 @@ import Trade from "./pages/Trade"
 import Buy from "./pages/Buy"
 import Sell from "./pages/Sell"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import Manage from "./pages/Manage"
 function Routes({ isSignedIn, contractId, wallet }) {
     const router = createBrowserRouter([
         {
@@ -40,6 +41,10 @@ function Routes({ isSignedIn, contractId, wallet }) {
                 {
                     path: "/sell",
                     element: <Sell />
+                },
+                {
+                    path: "/portfolio",
+                    element: <Manage />
                 }
 
             ]
