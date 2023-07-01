@@ -29,14 +29,14 @@ const dropIn = {
 const Modal = ({ handleClose, text }) => {
     return (
         <Backdrop onClick={handleClose}>
-            <motion.div className="bg-white p-16 rounded-xl"
+            <motion.div className="bg-white p-16 rounded-xl w-auto h-auto flex flex-col justify-center items-center"
                 onClick={(e) => e.stopPropagation()}
                 variants={dropIn}
                 initial="hidden"
                 animate="visible"
                 exit="exit"
             >
-                <h2 className="text-2xl">{text}</h2>
+                <h2 className="text-xl">{text}</h2>
                 <button onClick={handleClose}>Close</button>
             </motion.div>
         </Backdrop>
