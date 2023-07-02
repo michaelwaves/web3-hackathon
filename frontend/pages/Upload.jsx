@@ -1,4 +1,5 @@
 import { useReducer, useState } from "react"
+import FirebaseFileUpload from "../components/FirebaseFileUpload"
 initialState = {
   title: '',
   number: '',
@@ -9,7 +10,7 @@ initialState = {
   applicant: '',
   filingDate: '',
   issueDate: '',
-  pdf: '',//link to near blockchain
+  pdf: '',//link to firebase
   file: null,
   loading: false,
   error: null,
@@ -48,6 +49,10 @@ export default function Upload() {
   const [editingClaimIndex, setEditingClaimIndex] = useState(-1);
   const [newInventor, setNewInventor] = useState('');
   const [editingInventorIndex, setEditingInventorIndex] = useState(-1);
+
+  //firebase links
+  const [fileURL, setFileURL] = useState("")
+  const [pdfURL, setPdfURL] = useState("")
 
 
   //claims functions
@@ -151,11 +156,42 @@ export default function Upload() {
       Upload Patents Here!
       <div className="w-full h-auto min-h-screen flex flex-col items-center justify-center">
         <div className="w-[clamp(400px,50vw,800px)] flex items-center flex-col gap-2">
+          <h2>Add the Basics</h2>
+          <div className="flex flex-col w-full justify-center items-center  border-[2px] border-gray-300 p-2">
+            <div className="flex-row flex gap-2 w-full">
+              <div className="flex flex-col w-full">
+                <label>Title</label>
+                <input type="text" name="title" className='w-full' value={state.title} onChange={(e) => dispatch({ type: 'set', payload: { name: e.target.name, value: e.target.value } })} />
+              </div>
+              <div className="flex flex-col w-full">
+                <label>Number</label>
+                <input type="text" name="number" className='w-full' value={state.number} onChange={(e) => dispatch({ type: 'set', payload: { name: e.target.name, value: e.target.value } })} />
+              </div>
+            </div>
+            <div className="flex-row flex gap-2 w-full">
+              <div className="flex flex-col w-full">
+                <label>Filing Date</label>
+                <input type="text" name="filingDate" className='w-full' value={state.filingDate} onChange={(e) => dispatch({ type: 'set', payload: { name: e.target.name, value: e.target.value } })} />
+              </div>
+              <div className="flex flex-col w-full ">
+                <label>Issue Date</label>
+                <input type="text" name="issueDate" className='w-full' value={state.issueDate} onChange={(e) => dispatch({ type: 'set', payload: { name: e.target.name, value: e.target.value } })} />
+              </div>
+            </div>
+            <label>Abstract</label>
+            <textarea name="abstract" className="h-40 bg-[#cccccc] w-full p-2 caret-red-400" value={state.abstract} onChange={(e) => dispatch({ type: 'set', payload: { name: e.target.name, value: e.target.value } })} />
+          </div>
           <div className="flex flex-col w-full space-y-2">
             <h2>Add Your Patent</h2>
             <div className="flex flex-col justify-center items-center border-[2px] border-gray-300 p-2">
-              <label>PDF, DOCX, DOC</label>
-              <input type="file" name="pdf" value={state.pdf} accept=".pdf, .docx, .doc" onChange={(e) => dispatch({ type: 'set', payload: { name: e.target.name, value: e.target.files[0] } })} />
+              {/* <label>PDF, DOCX, DOC</label>
+              <input type="file" name="pdf" value={state.pdf} accept=".pdf, .docx, .doc" onChange={(e) => dispatch({ type: 'set', payload: { name: e.target.name, value: e.target.files[0] } })} /> */}
+              <FirebaseFileUpload setFileURL={setFileURL} fileName={state.title + "-patent#=" + state.number + "-representative_drawing"} text="Upload Representative Drawing" extension={'.jpg'} />
+            </div>
+            <div className="flex flex-col justify-center items-center border-[2px] border-gray-300 p-2">
+              {/* <label>PDF, DOCX, DOC</label>
+              <input type="file" name="pdf" value={state.pdf} accept=".pdf, .docx, .doc" onChange={(e) => dispatch({ type: 'set', payload: { name: e.target.name, value: e.target.files[0] } })} /> */}
+              <FirebaseFileUpload setFileURL={setPdfURL} fileName={state.title + "-patent#=" + state.number + "-pdf"} text="Upload PDF" extension={'.pdf'} />
             </div>
             <h2>Add Inventors</h2>
             <div className="flex flex-col justify-center items-center border-[2px] border-gray-300 p-2">
@@ -180,31 +216,6 @@ export default function Upload() {
                   <button onClick={handleAddInventor}>Add Inventor</button>
                 </>
               )}
-            </div>
-            <h2>Add the Basics</h2>
-            <div className="flex flex-col w-full justify-center items-center  border-[2px] border-gray-300 p-2">
-              <div className="flex-row flex gap-2 w-full">
-                <div className="flex flex-col w-full">
-                  <label>Title</label>
-                  <input type="text" name="title" className='w-full' value={state.title} onChange={(e) => dispatch({ type: 'set', payload: { name: e.target.name, value: e.target.value } })} />
-                </div>
-                <div className="flex flex-col w-full">
-                  <label>Number</label>
-                  <input type="text" name="number" className='w-full' value={state.number} onChange={(e) => dispatch({ type: 'set', payload: { name: e.target.name, value: e.target.value } })} />
-                </div>
-              </div>
-              <div className="flex-row flex gap-2 w-full">
-                <div className="flex flex-col w-full">
-                  <label>Filing Date</label>
-                  <input type="text" name="filingDate" className='w-full' value={state.filingDate} onChange={(e) => dispatch({ type: 'set', payload: { name: e.target.name, value: e.target.value } })} />
-                </div>
-                <div className="flex flex-col w-full ">
-                  <label>Issue Date</label>
-                  <input type="text" name="issueDate" className='w-full' value={state.issueDate} onChange={(e) => dispatch({ type: 'set', payload: { name: e.target.name, value: e.target.value } })} />
-                </div>
-              </div>
-              <label>Abstract</label>
-              <textarea name="abstract" className="h-40 bg-[#cccccc] w-full p-2 caret-red-400" value={state.abstract} onChange={(e) => dispatch({ type: 'set', payload: { name: e.target.name, value: e.target.value } })} />
             </div>
 
             {/*  <label>Description</label>

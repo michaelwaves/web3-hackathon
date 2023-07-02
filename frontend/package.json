@@ -30,6 +30,7 @@
     "@near-wallet-selector/modal-ui": "^8.1.4",
     "@near-wallet-selector/my-near-wallet": "^8.1.4",
     "autoprefixer": "^10.4.14",
+    "firebase": "^9.23.0",
     "framer-motion": "^10.12.18",
     "near-api-js": "^2.1.4",
     "postcss": "^8.4.24",
