@@ -1,110 +1,55 @@
-near-blank-project
-==================
+# NearIP - Web3 Build Hackathon!
 
-This app was initialized with [create-near-app]
+## Inspiration
 
+Before demoing our product, I want to provide quick context on the inspiration. I recently had a conversation with a close friend who wanted to share their patents with the world. However, their excitement quickly turned into frustration as they discovered the exorbitant costs associated with navigating the convoluted legal landscape and finding potential buyers. Meanwhile, I found online that companies had trouble scouting relevant patents, with transactions costing thousands due to the lawyer fees involved.
 
-Quick Start
-===========
+This encounter ignited a fire within me—a burning determination to create a solution that would empower innovators like my friend and revolutionize the way intellectual property is transacted. That's when NearIP was born, an Intellectual Property NFT Marketplace built on Near Protocol's Blockchain Operating System.
 
-If you haven't installed dependencies during setup:
+Here’s the data. Did you know that intellectual property (IP) and patents play a significant role in both the Canadian and US economies? In the United States, IP-intensive industries account for an astounding 38.2% of the nation's GDP, contributing over USD 6.6 trillion to the economy [source: U.S. Department of Commerce].
 
-    npm install
+However, the current IP ecosystem is burdened by inefficiencies and limitations. Traditional methods of IP protection, licensing, and transactions are slow, costly, and prone to disputes. This hampers innovation and prevents creators from fully leveraging the value of their intellectual assets.
 
+## What it does
 
-Build and deploy your contract to TestNet with a temporary dev account:
+That's where NearIP comes in. NearIP is an Intellectual Property NFT Marketplace built on Near Protocol's Blockchain Operating System, offering a transformative solution for the IP industry. By harnessing the power of blockchain technology, NearIP brings a multitude of benefits to all stakeholders involved.
 
-    npm run deploy
+For creators, NearIP provides a secure and transparent platform to tokenize their intellectual property as Non-Fungible Tokens (NFTs). This enables them to establish verifiable ownership, protect their IP rights, and unlock new avenues for monetization. Creators can seamlessly license their IP assets to interested parties, ensuring fair compensation and streamlined transactions.
 
-Test your contract:
+For investors, NearIP opens up a new world of investment opportunities in the IP space. Through the marketplace, they can explore a diverse range of IP assets and participate in their growth potential. The transparent nature of blockchain ensures trust and reduces the risk of fraud, providing a secure environment for IP investments.
 
-    npm test
+NearIP also benefits businesses seeking to access and license IP assets. The marketplace offers a global repository of NFT-based IP assets, facilitating easy discovery and licensing negotiations. By leveraging blockchain's immutability and smart contract capabilities, NearIP enables streamlined, automated licensing agreements, reducing legal complexities and ensuring compliance.
 
-If you have a frontend, run `npm start`. This will run a dev server.
+## How we built it
 
+Near - for user authentication through Near's Wallet, so we can track who owns what patents and charge the relevant fees through Near
 
-Exploring The Code
-==================
+Firebase - for storage of patent information (next step is moving it onto Near, couldn't get that working in time)
 
-1. The smart-contract code lives in the `/contract` folder. See the README there for
-   more info. In blockchain apps the smart contract is the "backend" of your app.
-2. The frontend code lives in the `/frontend` folder. `/frontend/index.html` is a great
-   place to start exploring. Note that it loads in `/frontend/index.js`,
-   this is your entrypoint to learn how the frontend connects to the NEAR blockchain.
-3. Test your contract: `npm test`, this will run the tests in `integration-tests` directory.
+Voiceflow - AI driven chatbot to help with any user inquiries, both general or specific (e.g. what elevator patents exist)
 
+## Challenges we ran into
 
-Deploy
-======
+During the development of NearIP, we faced challenges in ensuring seamless integration with Near Wallet for user authentication, implementing a reliable storage solution with Firebase, and fine-tuning the Voiceflow AI chatbot to provide accurate and helpful responses to user inquiries regarding elevator patents or general queries.
 
-Every smart contract in NEAR has its [own associated account][NEAR accounts]. 
-When you run `npm run deploy`, your smart contract gets deployed to the live NEAR TestNet with a temporary dev account.
-When you're ready to make it permanent, here's how:
+## Accomplishments that we're proud of
 
+Working with NEAR for the first time for Michael and second time for William! 
 
-Step 0: Install near-cli (optional)
--------------------------------------
+Learning more about NEAR and building a proof of concept in time this weekend 😄
 
-[near-cli] is a command line interface (CLI) for interacting with the NEAR blockchain. It was installed to the local `node_modules` folder when you ran `npm install`, but for best ergonomics you may want to install it globally:
+## What we learned
 
-    npm install --global near-cli
+Throughout the development of NearIP, we learned about the significant challenges faced by creators and businesses in the current IP ecosystem, including high costs, inefficiencies, and limited accessibility. We also gained valuable insights into the potential of blockchain technology to revolutionize IP transactions by providing secure ownership, streamlined licensing, and increased transparency.
 
-Or, if you'd rather use the locally-installed version, you can prefix all `near` commands with `npx`
+## Business Model
 
-Ensure that it's installed with `near --version` (or `npx near --version`)
+In terms of business model, we can charge a flat fee of 1% on every patent transaction so instead of paying thousands for a lawyer to look through a bunch of paperwork, you can get a seamless and secure experience through NearIP for $100 if their patent is being sold for $10k. Will $38 Billion in patents listed out of the total $3 trillion worth of US patents, that’s a total addressable market of $380 million. Capturing just 1% of that would mean annual revenues of $3.8 million.
 
+## What's next for NearIP
 
-Step 1: Create an account for the contract
-------------------------------------------
+We hope to take NearIP from a proof of concept to a fully working application on Near! Right now we are using Firebase to store the information due to not being able to get the Near smart contracts working in time, but we already have the logic in place to secure these patents on chain.
 
-Each account on NEAR can have at most one contract deployed to it. If you've already created an account such as `your-name.testnet`, you can deploy your contract to `near-blank-project.your-name.testnet`. Assuming you've already created an account on [NEAR Wallet], here's how to create `near-blank-project.your-name.testnet`:
+To conclude, NearIP revolutionizes the trillion dollar IP industry by increasing efficiency, transparency, and accessibility. By embracing blockchain technology, we empower creators, investors, and businesses to fully leverage the immense value of intellectual property.
 
-1. Authorize NEAR CLI, following the commands it gives you:
-
-      near login
-
-2. Create a subaccount (replace `YOUR-NAME` below with your actual account name):
-
-      near create-account near-blank-project.YOUR-NAME.testnet --masterAccount YOUR-NAME.testnet
-
-Step 2: deploy the contract
----------------------------
-
-Use the CLI to deploy the contract to TestNet with your account ID.
-Replace `PATH_TO_WASM_FILE` with the `wasm` that was generated in `contract` build directory.
-
-    near deploy --accountId near-blank-project.YOUR-NAME.testnet --wasmFile PATH_TO_WASM_FILE
-
-
-Step 3: set contract name in your frontend code
------------------------------------------------
-
-Modify the line in `src/config.js` that sets the account name of the contract. Set it to the account id you used above.
-
-    const CONTRACT_NAME = process.env.CONTRACT_NAME || 'near-blank-project.YOUR-NAME.testnet'
-
-
-
-Troubleshooting
-===============
-On windows, if you have problems with WSL defaulting to windows Path, add
-
-[interop]
-addWindowsPath=false
-to wsl.conf
-
-After running npm install, there might be a parcel error with @near-wallet-selector. Navigate to this folder in frontend/node_modules. In every package.json in each subdirectory, there will be a line pointing to the types declaration. 
-
-Correct it to 
-"types": "./src/index.d.ts",
-
-On Windows, if you're seeing an error containing `EPERM` it may be related to spaces in your path. Please see [this issue](https://github.com/zkat/npx/issues/209) for more details.
-
-
-  [create-near-app]: https://github.com/near/create-near-app
-  [Node.js]: https://nodejs.org/en/download/package-manager/
-  [jest]: https://jestjs.io/
-  [NEAR accounts]: https://docs.near.org/concepts/basics/account
-  [NEAR Wallet]: https://wallet.testnet.near.org/
-  [near-cli]: https://github.com/near/near-cli
-  [gh-pages]: https://github.com/tschaub/gh-pages
+Join us in shaping the future of IP transactions with NearIP!
