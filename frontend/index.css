@@ -21,6 +21,12 @@
     .submit-button{
       @apply text-2xl p-4 rounded-xl shadow-md bg-primary-dark
     }
+    .flex-row-center{
+      @apply flex flex-row justify-center items-center
+    }
+    .flex-col-center{
+      @apply flex flex-col justify-center items-center
+    }
   }
   
   :root {

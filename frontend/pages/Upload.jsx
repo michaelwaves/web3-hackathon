@@ -127,7 +127,8 @@ export default function Upload() {
     formData.append('pdf', state.pdf)
     formData.append('file', state.file)
     try {
-      const res = await fetch('/api/patents', {
+      window.location.href = "/upload-confirmation"
+      /* const res = await fetch('/api/patents', {
         method: 'POST',
         body: formData
       })
@@ -137,7 +138,7 @@ export default function Upload() {
         dispatch({ type: 'reset' })
       } else {
         dispatch({ type: 'set', payload: { name: 'error', value: data.error } })
-      }
+      } */
     } catch (error) {
       dispatch({ type: 'set', payload: { name: 'error', value: error.message } })
     }
@@ -208,7 +209,7 @@ export default function Upload() {
 
             {/*  <label>Description</label>
             <input type="text" name="description" value={state.description} onChange={(e) => dispatch({ type: 'set', payload: { name: e.target.name, value: e.target.value } })} /> */}
-            <button type="">Submit</button>
+            <button onClick={(e) => handleSubmit(e)}>Submit</button>
           </div>
           {/* <div className="flex flex-col justify-center items-center">
             <h2>Add Claims</h2>

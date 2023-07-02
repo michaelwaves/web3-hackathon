@@ -8,6 +8,7 @@ import Buy from "./pages/Buy"
 import Sell from "./pages/Sell"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Manage from "./pages/Manage"
+import UploadConfirmation from "./pages/UploadConfirmation"
 function Routes({ isSignedIn, contractId, wallet }) {
     const router = createBrowserRouter([
         {
@@ -45,6 +46,10 @@ function Routes({ isSignedIn, contractId, wallet }) {
                 {
                     path: "/portfolio",
                     element: <Manage />
+                },
+                {
+                    path: "/upload-confirmation",
+                    element: <UploadConfirmation />
                 }
 
             ]
