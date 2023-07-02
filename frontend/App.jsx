@@ -4,6 +4,7 @@ import React from 'react';
 import './assets/global.css';
 
 import { EducationalText, SignInPrompt, SignOutButton } from './ui-components';
+import PatentDisplay from './components/PatentDisplay';
 
 
 export default function App({ isSignedIn, contractId, wallet }) {
@@ -13,7 +14,7 @@ export default function App({ isSignedIn, contractId, wallet }) {
 
   // Get blockchian state once on component load
   React.useEffect(() => {
-    getGreeting()
+    getPatents()
       .then(setValueFromBlockchain)
       .catch(alert)
       .finally(() => {
@@ -25,7 +26,7 @@ export default function App({ isSignedIn, contractId, wallet }) {
   /// If user not signed-in with wallet - show prompt
   if (!isSignedIn) {
     // Sign-in flow will reload the page later
-    return <SignInPrompt greeting={valueFromBlockchain} onClick={() => wallet.signIn()} />;
+    return <SignInPrompt greeting={"hello"} onClick={() => wallet.signIn()} />;
   }
 
   function changeGreeting(e) {
@@ -35,25 +36,37 @@ export default function App({ isSignedIn, contractId, wallet }) {
 
     // use the wallet to send the greeting to the contract
     wallet.callMethod({ method: 'set_greeting', args: { message: greetingInput.value }, contractId })
-      .then(async () => { return getGreeting(); })
+      .then(async () => { return getPatents(); })
       .then(setValueFromBlockchain)
       .finally(() => {
         setUiPleaseWait(false);
       });
   }
 
-  function getGreeting() {
+  function getPatents() {
     // use the wallet to query the contract's greeting
-    return wallet.viewMethod({ method: 'get_greeting', contractId })
+    return wallet.viewMethod({ method: 'get_patents', contractId })
   }
 
   return (
     <>
       <main className={uiPleaseWait ? 'please-wait' : ''}>
         <h1>
-          The contract says: <span className="greeting">{valueFromBlockchain}</span>
+          The contract says: <span className="greeting">
+
+            <PatentDisplay title={valueFromBlockchain[0].title}
+              number={valueFromBlockchain[0].number}
+              abstract={valueFromBlockchain[0].abstract}
+              filingDate={valueFromBlockchain[0].filingDate}
+              issueDate={valueFromBlockchain[0].issueDate}
+              inventor="Bayer"
+              image={valueFromBlockchain[0].drawing}
+              buttonText={"View Patent"}
+              onClick={() => window.open(valueFromBlockchain[0].pdf)}
+            />
+          </span>
         </h1>
-        <form onSubmit={changeGreeting} className="change">
+        {/* <form onSubmit={changeGreeting} className="change">
           <label>Change greeting:</label>
           <div>
             <input
@@ -66,7 +79,7 @@ export default function App({ isSignedIn, contractId, wallet }) {
               <div className="loader"></div>
             </button>
           </div>
-        </form>
+        </form> */}
         <EducationalText />
       </main>
     </>
