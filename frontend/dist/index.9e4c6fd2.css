@@ -354,10 +354,6 @@ h2 {
   width: 1.5rem;
 }
 
-.w-60 {
-  width: 15rem;
-}
-
 .w-\[clamp\(400px\,50vw\,800px\)\] {
   width: clamp(400px, 50vw, 800px);
 }
@@ -372,10 +368,6 @@ h2 {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-1\/2 {
-  width: 50%;
 }
 
 .flex-row {
