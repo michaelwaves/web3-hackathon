@@ -1,2 +1,4 @@
-DEFINE_NEAR_METHOD(get_greeting)
-DEFINE_NEAR_METHOD(set_greeting)
+DEFINE_NEAR_METHOD(add_patent)
+DEFINE_NEAR_METHOD(edit_patent)
+DEFINE_NEAR_METHOD(get_patents)
+DEFINE_NEAR_METHOD(remove_patent)

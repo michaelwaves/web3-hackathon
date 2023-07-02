@@ -44,6 +44,14 @@ class PatentMarketplace {
     }
 
     @call({}) // This method changes the state, for which it cost gas
+    remove_patent_by_number({ number }: { number: string }): void {
+        near.log(`Removing patent ${number}`);
+        this.patents = this.patents.filter((pat: Patent) => {
+            return pat.number !== number
+        });
+    }
+
+    @call({}) // This method changes the state, for which it cost gas
     edit_patent({ patent }: { patent: Patent }): void {
         near.log(`Saving patent ${patent.number}`);
         this.patents = this.patents.map((pat: Patent, index: number) => {

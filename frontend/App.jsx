@@ -23,6 +23,9 @@ export default function App({ isSignedIn, contractId, wallet }) {
   }
     , []);
 
+  React.useEffect(() => {
+    console.log("valueFromBlockchain", valueFromBlockchain);
+  }, [valueFromBlockchain]);
   /// If user not signed-in with wallet - show prompt
   if (!isSignedIn) {
     // Sign-in flow will reload the page later
@@ -48,24 +51,31 @@ export default function App({ isSignedIn, contractId, wallet }) {
     return wallet.viewMethod({ method: 'get_patents', contractId })
   }
 
+  const PatentComponents = valueFromBlockchain && valueFromBlockchain.map((patent, index) => {
+    return (
+      <PatentDisplay title={patent.title}
+        number={patent.number}
+        abstract={patent.abstract}
+        filingDate={patent.filingDate}
+        issueDate={patent.issueDate}
+        inventors={patent.inventors}
+        image={patent.drawing}
+        buttonText={"View Patent"}
+        onClick={() => window.open(patent.pdf)}
+      />
+    )
+  });
+
   return (
     <>
       <main className={uiPleaseWait ? 'please-wait' : ''}>
-        <h1>
-          The contract says: <span className="greeting">
+        <div className='flex flex-col space-y-2'>
+          <h1>Welcome to the Future of Patents! </h1>
+          <p>Secure and effortless blockchain patent storage for Web3. Powered by the Near Protocol. </p>
+          {!uiPleaseWait && PatentComponents || "Loading..."}
+        </div>
 
-            <PatentDisplay title={valueFromBlockchain[0].title}
-              number={valueFromBlockchain[0].number}
-              abstract={valueFromBlockchain[0].abstract}
-              filingDate={valueFromBlockchain[0].filingDate}
-              issueDate={valueFromBlockchain[0].issueDate}
-              inventor="Bayer"
-              image={valueFromBlockchain[0].drawing}
-              buttonText={"View Patent"}
-              onClick={() => window.open(valueFromBlockchain[0].pdf)}
-            />
-          </span>
-        </h1>
+
         {/* <form onSubmit={changeGreeting} className="change">
           <label>Change greeting:</label>
           <div>
@@ -80,7 +90,8 @@ export default function App({ isSignedIn, contractId, wallet }) {
             </button>
           </div>
         </form> */}
-        <EducationalText />
+
+        {/*<EducationalText />*/}
       </main>
     </>
   );

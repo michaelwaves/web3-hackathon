@@ -15,7 +15,7 @@ export default function PatentDisplay({ title, number, filingDate, issueDate, ab
         )
     })
     return (
-        <div className="w-60 h-auto border-gray-800 rounded-xl py-4 border-[1px] shadow-md">
+        <div className="w-full h-auto border-gray-800 rounded-xl py-4 border-[1px] shadow-md">
             <div className="flex flex-col space-y-2 items-center justify-center">
                 <h2 className="text-2xl">{title}</h2>
                 <h3 className="font-bold">Patent No. {number}</h3>
