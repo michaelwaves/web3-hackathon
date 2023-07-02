@@ -9,6 +9,8 @@ import Sell from "./pages/Sell"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Manage from "./pages/Manage"
 import UploadConfirmation from "./pages/UploadConfirmation"
+import Remove from "./pages/Remove"
+import RemoveConfirmation from "./pages/RemoveConfirmation"
 function Routes({ isSignedIn, contractId, wallet }) {
     const router = createBrowserRouter([
         {
@@ -50,6 +52,14 @@ function Routes({ isSignedIn, contractId, wallet }) {
                 {
                     path: "/upload-confirmation",
                     element: <UploadConfirmation />
+                },
+                {
+                    path: "/remove",
+                    element: <Remove wallet={wallet} contractId={contractId} />
+                },
+                {
+                    path: "/remove-confirmation",
+                    elememt: <RemoveConfirmation />
                 }
 
             ]

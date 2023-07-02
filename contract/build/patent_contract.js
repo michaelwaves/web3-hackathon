@@ -588,8 +588,8 @@ function NearBindgen({
   };
 }
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _class, _class2;
-let PatentMarketplace = (_dec = NearBindgen({}), _dec2 = view(), _dec3 = call({}), _dec4 = call({}), _dec5 = call({}), _dec(_class = (_class2 = class PatentMarketplace {
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _class2;
+let PatentMarketplace = (_dec = NearBindgen({}), _dec2 = view(), _dec3 = call({}), _dec4 = call({}), _dec5 = call({}), _dec6 = call({}), _dec(_class = (_class2 = class PatentMarketplace {
   patents = [{
     title: "METHOD OF FERMENTING MYCELIUM COMPOSITE MATERIAL",
     number: "US10407675B2",
@@ -621,6 +621,15 @@ let PatentMarketplace = (_dec = NearBindgen({}), _dec2 = view(), _dec3 = call({}
     });
   }
   // This method changes the state, for which it cost gas
+  remove_patent_by_number({
+    number
+  }) {
+    log(`Removing patent ${number}`);
+    this.patents = this.patents.filter(pat => {
+      return pat.number !== number;
+    });
+  }
+  // This method changes the state, for which it cost gas
   edit_patent({
     patent
   }) {
@@ -629,7 +638,7 @@ let PatentMarketplace = (_dec = NearBindgen({}), _dec2 = view(), _dec3 = call({}
       return pat.number === patent.number ? patent : pat;
     });
   }
-}, (_applyDecoratedDescriptor(_class2.prototype, "get_patents", [_dec2], Object.getOwnPropertyDescriptor(_class2.prototype, "get_patents"), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, "add_patent", [_dec3], Object.getOwnPropertyDescriptor(_class2.prototype, "add_patent"), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, "remove_patent", [_dec4], Object.getOwnPropertyDescriptor(_class2.prototype, "remove_patent"), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, "edit_patent", [_dec5], Object.getOwnPropertyDescriptor(_class2.prototype, "edit_patent"), _class2.prototype)), _class2)) || _class);
+}, (_applyDecoratedDescriptor(_class2.prototype, "get_patents", [_dec2], Object.getOwnPropertyDescriptor(_class2.prototype, "get_patents"), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, "add_patent", [_dec3], Object.getOwnPropertyDescriptor(_class2.prototype, "add_patent"), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, "remove_patent", [_dec4], Object.getOwnPropertyDescriptor(_class2.prototype, "remove_patent"), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, "remove_patent_by_number", [_dec5], Object.getOwnPropertyDescriptor(_class2.prototype, "remove_patent_by_number"), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, "edit_patent", [_dec6], Object.getOwnPropertyDescriptor(_class2.prototype, "edit_patent"), _class2.prototype)), _class2)) || _class);
 function edit_patent() {
   const _state = PatentMarketplace._getState();
   if (!_state && PatentMarketplace._requireInit()) {
@@ -641,6 +650,20 @@ function edit_patent() {
   }
   const _args = PatentMarketplace._getArgs();
   const _result = _contract.edit_patent(_args);
+  PatentMarketplace._saveToStorage(_contract);
+  if (_result !== undefined) if (_result && _result.constructor && _result.constructor.name === "NearPromise") _result.onReturn();else env.value_return(PatentMarketplace._serialize(_result, true));
+}
+function remove_patent_by_number() {
+  const _state = PatentMarketplace._getState();
+  if (!_state && PatentMarketplace._requireInit()) {
+    throw new Error("Contract must be initialized");
+  }
+  const _contract = PatentMarketplace._create();
+  if (_state) {
+    PatentMarketplace._reconstruct(_contract, _state);
+  }
+  const _args = PatentMarketplace._getArgs();
+  const _result = _contract.remove_patent_by_number(_args);
   PatentMarketplace._saveToStorage(_contract);
   if (_result !== undefined) if (_result && _result.constructor && _result.constructor.name === "NearPromise") _result.onReturn();else env.value_return(PatentMarketplace._serialize(_result, true));
 }
@@ -686,5 +709,5 @@ function get_patents() {
   if (_result !== undefined) if (_result && _result.constructor && _result.constructor.name === "NearPromise") _result.onReturn();else env.value_return(PatentMarketplace._serialize(_result, true));
 }
 
-export { add_patent, edit_patent, get_patents, remove_patent };
+export { add_patent, edit_patent, get_patents, remove_patent, remove_patent_by_number };
 //# sourceMappingURL=patent_contract.js.map
