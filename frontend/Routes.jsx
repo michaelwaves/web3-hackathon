@@ -47,7 +47,7 @@ function Routes({ isSignedIn, contractId, wallet }) {
                 },
                 {
                     path: "/portfolio",
-                    element: <Manage />
+                    element: <Manage wallet={wallet} contractId={contractId} />
                 },
                 {
                     path: "/upload-confirmation",

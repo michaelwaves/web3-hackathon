@@ -6,9 +6,9 @@ export function SignInPrompt({ greeting, onClick }) {
       <h1>
         <span className="greeting">{greeting}</span>
       </h1>
-      <h3>
+      {/* <h3>
         Welcome to NearIP!
-      </h3>
+      </h3> */}
       <p>
         This contract stores patents in the NEAR blockchain. To
         add or remove patents, sign in using the NEAR Wallet button below.

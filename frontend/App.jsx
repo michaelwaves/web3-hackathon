@@ -29,7 +29,7 @@ export default function App({ isSignedIn, contractId, wallet }) {
   /// If user not signed-in with wallet - show prompt
   if (!isSignedIn) {
     // Sign-in flow will reload the page later
-    return <SignInPrompt greeting={"hello"} onClick={() => wallet.signIn()} />;
+    return <SignInPrompt greeting={"Welcome to NearIP"} onClick={() => wallet.signIn()} />;
   }
 
   function changeGreeting(e) {

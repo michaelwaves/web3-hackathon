@@ -10,7 +10,7 @@ export default function About() {
     Join us in shaping the future of IP transactions with NearIP!
     
 `;
-const inspiration = `
+    const inspiration = `
 
 Hi, my name is William, and this is my team’s demo for the Web3 Build Hackathon!
 
@@ -21,11 +21,11 @@ This encounter ignited a fire within me—a burning determination to create a so
 `;
     return (
         <div className="flex flex-col justify-center items-center p-4 pt-10 pb-10">
-            <h2 className="text-2xl w-full">Inspiration</h2>
+            {/* <h2 className="text-2xl w-full">Inspiration</h2>
             <br></br>
             <div className="flex flex-col space-y-2 items-center justify-center">
                 {inspiration}
-            </div>
+            </div> */}
             <br></br>
             <h2 className="text-2xl w-full">Introducing NearIP: Revolutionizing Intellectual Property Ownership and Transactions</h2>
             <div className="flex flex-col space-y-2 items-center justify-center">

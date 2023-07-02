@@ -54,7 +54,7 @@ export default function Upload({ wallet, contractId }) {
   const [fileURL, setFileURL] = useState("")
   const [pdfURL, setPdfURL] = useState("")
 
-
+  const [uploadPatentSuccess, setUploadPatentSuccess] = useState(false)
   //claims functions
   const handleChange = (event) => {
     setNewClaim(event.target.value);
@@ -136,7 +136,8 @@ export default function Upload({ wallet, contractId }) {
             drawing: fileURL,
           }
         }, contractId
-      }).then((result) => { window.location.href = "/upload-confirmation" })
+      }).then((result) => { setUploadPatentSuccess(true) })
+      //.then((result) => { window.location.href = "/upload-confirmation" })
     } catch (error) {
       dispatch({ type: 'set', payload: { name: 'error', value: error.message } })
     }
@@ -249,6 +250,9 @@ export default function Upload({ wallet, contractId }) {
             {/*  <label>Description</label>
             <input type="text" name="description" value={state.description} onChange={(e) => dispatch({ type: 'set', payload: { name: e.target.name, value: e.target.value } })} /> */}
             <button onClick={(e) => addPatent(e)}>Submit</button>
+          </div>
+          <div>
+            {uploadPatentSuccess && <p>Patent Uploaded Successfully!</p>}
           </div>
           {/* <div className="flex flex-col justify-center items-center">
             <h2>Add Claims</h2>
