@@ -43,7 +43,7 @@ reducer = (state, action) => {
       throw new Error()
   }
 }
-export default function Upload() {
+export default function Upload({ wallet, contractId }) {
   const [state, dispatch] = useReducer(reducer, initialState)
   const [newClaim, setNewClaim] = useState('');
   const [editingClaimIndex, setEditingClaimIndex] = useState(-1);
@@ -116,6 +116,34 @@ export default function Upload() {
   };
 
   //submit form
+
+  function addPatent(e) {
+    e.preventDefault();
+    dispatch({ type: 'set', payload: { name: 'loading', value: true } })
+    // use the wallet to send the greeting to the contract
+    try {
+      wallet.callMethod({
+        method: 'add_patent',
+        args: {
+          patent: {
+            title: state.title,
+            number: state.number,
+            abstract: state.abstract,
+            filingDate: state.filingDate,
+            issueDate: state.issueDate,
+            inventors: state.inventors,
+            pdf: pdfURL,
+            drawing: fileURL,
+          }
+        }, contractId
+      }).then((result) => { window.location.href = "/upload-confirmation" })
+    } catch (error) {
+      dispatch({ type: 'set', payload: { name: 'error', value: error.message } })
+    }
+    dispatch({ type: 'set', payload: { name: 'loading', value: false } })
+  }
+
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     dispatch({ type: 'set', payload: { name: 'loading', value: true } })
@@ -220,7 +248,7 @@ export default function Upload() {
 
             {/*  <label>Description</label>
             <input type="text" name="description" value={state.description} onChange={(e) => dispatch({ type: 'set', payload: { name: e.target.name, value: e.target.value } })} /> */}
-            <button onClick={(e) => handleSubmit(e)}>Submit</button>
+            <button onClick={(e) => addPatent(e)}>Submit</button>
           </div>
           {/* <div className="flex flex-col justify-center items-center">
             <h2>Add Claims</h2>

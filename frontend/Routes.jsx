@@ -21,7 +21,7 @@ function Routes({ isSignedIn, contractId, wallet }) {
                 },
                 {
                     path: "/upload",
-                    element: <Upload />
+                    element: <Upload wallet={wallet} contractId={contractId} />
                 },
                 {
                     path: "/about",
