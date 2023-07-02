@@ -3,7 +3,7 @@ export default function Footer() {
         <div className="w-full bg-primary-dark text-dark p-16" >
             <div className="flex flex-col md:flex-row justify-start gap-24">
                 <div>
-                    <h2 className="text-4xl ">TradeMint</h2>
+                    <h2 className="text-4xl ">NearIP</h2>
                     <p className="">©️   2023</p>
                 </div>
 

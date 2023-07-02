@@ -32,7 +32,7 @@ export default function Header({ wallet, isSignedIn }) {
         <div className="w-full h-8 p-4 justify-between items-center lg:flex-row">
             <div className="h-full flex flex-row items-center justify-between p-2">
                 <a href="/" className="">
-                    <h2 className="text-4xl">TradeMint</h2>
+                    <h2 className="text-4xl">NearIP</h2>
                 </a>
                 <div className="sm:flex flex-row gap-2 hidden">
                     <a href="/about" className="nav-element">About</a>
