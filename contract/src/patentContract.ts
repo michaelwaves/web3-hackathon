@@ -21,7 +21,21 @@ class PatentMarketplace {
     }
 
     @call({}) // This method changes the state, for which it cost gas
-    set_patent({ patent }: { patent: Patent }): void {
+    add_patent({ patent }: { patent: Patent }): void {
+        near.log(`Adding patent ${patent.number}`);
+        this.patents.push(patent);
+    }
+
+    @call({}) // This method changes the state, for which it cost gas
+    remove_patent({ patent }: { patent: Patent }): void {
+        near.log(`Removing patent ${patent.number}`);
+        this.patents = this.patents.filter((pat: Patent) => {
+            return pat.number !== patent.number
+        });
+    }
+
+    @call({}) // This method changes the state, for which it cost gas
+    edit_patent({ patent }: { patent: Patent }): void {
         near.log(`Saving patent ${patent.number}`);
         this.patents = this.patents.map((pat: Patent, index: number) => {
             return pat.number === patent.number ? patent : pat
