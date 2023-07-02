@@ -12,8 +12,6 @@ For investors, NearIP opens up a new world of investment opportunities in the IP
 
 NearIP also benefits businesses seeking to access and license IP assets. The marketplace offers a global repository of NFT-based IP assets, facilitating easy discovery and licensing negotiations. By leveraging blockchain's immutability and smart contract capabilities, NearIP enables streamlined, automated licensing agreements, reducing legal complexities and ensuring compliance.
 
-To conclude, NearIP revolutionizes the trillion dollar IP industry by increasing efficiency, transparency, and accessibility. By embracing blockchain technology, we empower creators, investors, and businesses to fully leverage the immense value of intellectual property.
-
 `
 export const aboutTextComponents = aboutText.split("\n").map((text) => {
     return (
